@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "FQE0NQluIwFQXMkEYoD+8eLNYIVzSz8BCzW5H52RfJ4KMLs80c9qARIe6ucHkPAlofC/I0bPd55MuVsbe37CTQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\CyborgSB\\source\\repos\\Notify\\NotifyApi\\NotifyApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\CyborgSB\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\CyborgSB\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\CyborgSB\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.18.1\\microsoft.visualstudio.azure.containers.tools.targets.1.18.1.nupkg.sha512",
+    "C:\\Users\\CyborgSB\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\CyborgSB\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\CyborgSB\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\CyborgSB\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
