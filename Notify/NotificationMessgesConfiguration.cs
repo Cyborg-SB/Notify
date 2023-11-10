@@ -1,5 +1,4 @@
 ﻿using Notify.Extensions;
-using System.Collections.Generic;
 
 namespace Notify
 {
@@ -22,14 +21,14 @@ namespace Notify
             if (Instance is not null)
                 throw new Exception($"{nameof(NotificationMessagesConfiguation)} já inicializado");
 
-            Dictionary<long, NotificationParameters> consolidatedNotificationParameters = new Dictionary<long, NotificationParameters>();
+            Dictionary<long, NotificationParameters> consolidatedNotificationParameters = new();
 
             messagesConfigurations.ForEach(currentDicionary => { consolidatedNotificationParameters.AddRange(currentDicionary); });
 
             Instance = new NotificationMessagesConfiguation(consolidatedNotificationParameters);
         }
 
-        internal static NotificationMessagesConfiguation Instance;
+        internal static NotificationMessagesConfiguation? Instance;
 
         public Dictionary<long, NotificationParameters> MessagesConfiguation { get; private set; }
     }

@@ -4,27 +4,29 @@ namespace Notify
 {
     public abstract class Notifiable
     {
-        private List<NotificationItem> notifications = new List<NotificationItem>();        
+        private  readonly List<NotificationItem> notifications = new();        
         public bool Valid { get { return notifications.Count == 0; } }
         public bool Invalid { get { return !Valid; } }
         public IReadOnlyCollection<NotificationItem> Notifications { get { return notifications; } }
 
         public virtual void Validate() { }
         public virtual void Validate(INotifiableContext notifiable) { }
-        public void AddNotification(NotificationItem notification) =>
+
+
+        internal void AddNotification(NotificationItem notification) =>
             notifications.Add(GetNotificationParameters(notification));
 
-        public void AddNotification(string message, long key, string propertyValue)  =>
+        internal void AddNotification(string message, long key, string propertyValue)  =>
             notifications.Add(GetNotificationParameters(message, key, propertyValue));
-        public void AddNotifications(IEnumerable<NotificationItem> notificationItems) =>
+        internal void AddNotifications(IEnumerable<NotificationItem> notificationItems) =>
             notifications.AddRange(notificationItems);
 
-        private NotificationItem GetNotificationParameters(NotificationItem notification)=>
+        private  static NotificationItem GetNotificationParameters(NotificationItem notification)=>
              GetNotificationParameters(notification.Message, notification.Key, notification.PropertyValue);
         
-        private NotificationItem GetNotificationParameters(string message, long key = 0 ,string propertyValue = "")
+        private static NotificationItem GetNotificationParameters(string message, long key = 0 ,string propertyValue = "")
         {
-            if (key != 0 && NotificationMessagesConfiguation.Instance.MessagesConfiguation.TryGetValue(key, out NotificationParameters value))
+            if (key != 0 && NotificationMessagesConfiguation.Instance!.MessagesConfiguation.TryGetValue(key, out var value))
             {
                 if(string.IsNullOrWhiteSpace(message))
                     return value;

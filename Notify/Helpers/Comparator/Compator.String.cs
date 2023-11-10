@@ -22,7 +22,7 @@
             public static bool HasLengthNotEqualTo(string valueToBeCompared, string referenceValue) => !(valueToBeCompared.Length == referenceValue.Length);
             public static bool HasContentNotEqualTo(string valueToBeCompared, string referenceValue) => !(HasLengthEqualTo(valueToBeCompared, referenceValue) && string.Compare(valueToBeCompared, referenceValue, StringComparison.Ordinal) == 0);
             public static bool HasContentNotEqualToIgnoringCase(string valueToBeCompared, string referenceValue) => !(HasLengthEqualTo(valueToBeCompared, referenceValue) && string.Compare(valueToBeCompared, referenceValue, StringComparison.OrdinalIgnoreCase) == 0);
-            public static bool IsNotNull(string valueToBeCompared) => !(valueToBeCompared is null);
+            public static bool IsNotNull(string valueToBeCompared) => (valueToBeCompared is not null);
         }
     }
 }

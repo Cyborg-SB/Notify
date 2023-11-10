@@ -1,6 +1,4 @@
-﻿using Notify.Interfaces;
-
-namespace Notify
+﻿namespace Notify
 {
     public class Contract 
     {

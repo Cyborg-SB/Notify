@@ -28,7 +28,7 @@ namespace NotifyApi.Controllers
 
             x2.Validate(notifiableContext);
 
-            x2.AddNotification(string.Empty, PersonalNotificationSeverity.greater_value_error, string.Empty);
+            x2.Validate();
 
             xpto.NotifyTest();
             notifiableContext.AddNotification(string.Empty, PersonalNotificationSeverity.failed_to_retrieve_response);

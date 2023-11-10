@@ -10,8 +10,7 @@ NotificationMessagesConfiguation.SetupMessagesConfiguration(PersonalNotification
 
 var x2 = new BaseEntity();
 
-if (x2.Valid)
-    x2.AddNotification(string.Empty, PersonalNotificationSeverity.failed_to_retrieve_response, x2.Inteiro.ToString());
+
 
 Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(x2.Notifications));
 Console.ReadLine();
