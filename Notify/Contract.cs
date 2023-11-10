@@ -1,50 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Notify.Interfaces;
 
 namespace Notify
 {
-    public class Contract : Notifiable
+    public class Contract 
     {
-        public Contract()
+        public Contract(Notifiable entity)
         {
+            notifiableEntity = entity; 
         }
 
-        public Contract NotGreatherThan (int valueToBeCompared, int valueToConfront, long key)
+
+        private readonly Notifiable notifiableEntity;
+        public Contract ShouldBeTrue(bool value, long key)
         {
-            if (valueToBeCompared > valueToConfront)
-                AddNotification(new NotificationItem(string.Empty, key));
+            if (!value)
+                notifiableEntity.AddNotification(new NotificationItem(string.Empty, key));
 
             return this;
-
         }
-        public Contract NotLowerThan(int valueToBeCompared, int valueToConfront, long key)
-        {
-            if (valueToBeCompared < valueToConfront)
-                AddNotification(new NotificationItem(string.Empty, key));
-
-            return this;
-
-        }
-
-        public Contract NotGreatherOrEqualThan(int valueToBeCompared, int valueToConfront, long key)
-        {
-            if (valueToBeCompared >= valueToConfront)
-                AddNotification(new NotificationItem(string.Empty, key));
-
-            return this;
-
-        }
-        public Contract NotLowerOrEqualThan(int valueToBeCompared, int valueToConfront, long key)
-        {
-            if (valueToBeCompared <= valueToConfront)
-                AddNotification(new NotificationItem(string.Empty, key));
-
-            return this;
-
-        }
+        public Contract ShouldNotBeTrue(bool value,  long key) =>
+            ShouldBeTrue(!value, key);
+        public Contract ShouldBeTrue(Func<bool> action, long key) =>
+            ShouldBeTrue(action(),key);
+        public Contract ShouldNotBeTrue(Func<bool> action, long key) =>
+            ShouldNotBeTrue(action(),key);  
 
     }
 }

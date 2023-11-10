@@ -1,4 +1,6 @@
-﻿namespace Notify
+﻿using Notify.Interfaces;
+
+namespace Notify
 {
     public abstract class Notifiable
     {
@@ -8,6 +10,7 @@
         public IReadOnlyCollection<NotificationItem> Notifications { get { return notifications; } }
 
         public virtual void Validate() { }
+        public virtual void Validate(INotifiableContext notifiable) { }
         public void AddNotification(NotificationItem notification) =>
             notifications.Add(GetNotificationParameters(notification));
 

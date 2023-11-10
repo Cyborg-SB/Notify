@@ -1,4 +1,5 @@
 ﻿using Notify;
+using Notify.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,9 +35,16 @@ namespace NotifyConsole
         {
             public BaseEntity()
             {
-                var contrat = new Contract()
-                    .NotGreatherOrEqualThan(3, 3, PersonalNotificationSeverity.greater_value_error)
-                    .NotGreatherThan(4, 3, PersonalNotificationSeverity.greater_value_error);
+                new Contract(this)
+                   .ShouldBeTrue(Compator.Int.NotGreaterThan(3, 3), PersonalNotificationSeverity.greater_value_error)
+                   .ShouldBeTrue(Compator.Int.NotGreaterThan(4, 3), PersonalNotificationSeverity.greater_value_error);                    
+            }
+
+            public override void Validate(INotifiableContext notifiableContext)
+            {
+                new ContextContract(notifiableContext)
+                    .ShouldNotBeTrue(Compator.Int.GreaterThan(3,3),PersonalNotificationSeverity.greater_value_error)
+                    .ShouldBeTrue(Compator.Int.GreaterThan(3, 3), PersonalNotificationSeverity.greater_value_error);
             }
 
             public int Inteiro { get; set; }

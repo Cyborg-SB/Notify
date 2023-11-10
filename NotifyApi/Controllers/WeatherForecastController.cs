@@ -25,6 +25,9 @@ namespace NotifyApi.Controllers
         {
 
             var x2 = new BaseEntity();
+
+            x2.Validate(notifiableContext);
+
             x2.AddNotification(string.Empty, PersonalNotificationSeverity.greater_value_error, string.Empty);
 
             xpto.NotifyTest();
