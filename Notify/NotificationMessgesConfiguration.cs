@@ -1,4 +1,6 @@
-﻿using Notify.Extensions;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Notify.Extensions;
+using Notify.Interfaces;
 
 namespace Notify
 {

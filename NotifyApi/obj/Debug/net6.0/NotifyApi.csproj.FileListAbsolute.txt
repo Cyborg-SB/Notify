@@ -37,3 +37,6 @@ C:\Users\CyborgSB\source\repos\Notify\NotifyApi\obj\Debug\net6.0\refint\NotifyAp
 C:\Users\CyborgSB\source\repos\Notify\NotifyApi\obj\Debug\net6.0\NotifyApi.pdb
 C:\Users\CyborgSB\source\repos\Notify\NotifyApi\obj\Debug\net6.0\NotifyApi.genruntimeconfig.cache
 C:\Users\CyborgSB\source\repos\Notify\NotifyApi\obj\Debug\net6.0\ref\NotifyApi.dll
+C:\Users\CyborgSB\source\repos\Notify\NotifyApi\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\CyborgSB\source\repos\Notify\NotifyApi\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\CyborgSB\source\repos\Notify\NotifyApi\bin\Debug\net6.0\Newtonsoft.Json.dll

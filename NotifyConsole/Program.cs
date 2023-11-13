@@ -6,7 +6,7 @@ using static NotifyConsole.PersonalNotification;
 Console.WriteLine("Hello, World!");
 
 
-NotificationMessagesConfiguation.SetupMessagesConfiguration(PersonalNotification.myNotifications);
+//NotificationMessagesConfiguation.SetupMessagesConfiguration(PersonalNotification.myNotifications);
 
 var x2 = new BaseEntity();
 
