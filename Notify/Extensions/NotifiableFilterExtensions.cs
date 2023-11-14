@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 using Notify.Dtos;
-using Notify.Interfaces;
+using Notify.Entities;
+using Notify.Enums;
+using Notify.Services;
+using Notify.Services.Interfaces;
 using System.Net;
 
 namespace Notify.Extensions
@@ -15,14 +18,16 @@ namespace Notify.Extensions
         {
             var notifiable = GetNotifiableContext(context);
 
-            if (notifiable.Valid)
-                await next.Invoke();
+            if (notifiable.Invalid)
+            {
+                var response = GetNotifiableResultReponseMessages(notifiable.Notifications);
 
-            var response = GetNotifiableResultReponseMessages(notifiable.Notifications);
-
-            context.HttpContext.Response.StatusCode = response.StatusCode;
-            context.HttpContext.Response.ContentType = "application/json";
-            await context.HttpContext.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(new ObjectResult(response)?.Value));
+                context.HttpContext.Response.StatusCode = response.StatusCode;
+                context.HttpContext.Response.ContentType = "application/json";
+                await context.HttpContext.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(new ObjectResult(response)?.Value));
+                return;
+            }       
+            await next.Invoke();
         }
 
         private static INotifiableContext GetNotifiableContext(FilterContext filterContext) =>

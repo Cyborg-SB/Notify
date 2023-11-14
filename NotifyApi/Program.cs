@@ -1,8 +1,12 @@
-using Notify;
 using Notify.Filters;
-using Notify.Interfaces;
-using NotifyApi.Controllers;
-using NotifyConsole;
+using Notify.Services;
+using Notify.Services.Interfaces;
+using NotifyApi;
+using NotifyApi.Features.Movies;
+using NotifyApi.Features.Movies.Constants;
+using NotifyApi.Features.Movies.Repositories;
+using NotifyApi.Features.MoviesFeatures;
+using NotifyApi.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,9 +20,25 @@ builder.Services.AddControllers(o =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen();
-builder.Services.AddTransient<ICustomSeviceXPTo, CustomSeviceXPTo>();
 builder.Services.AddScoped<INotifiableContext, NotifiableContext>();
-NotificationMessagesConfiguation.SetupMessagesConfiguration(new[] { PersonalNotification.myNotifications, PersonalNotification.myNotifications2 });
+
+//Repositories
+builder.Services.AddSingleton<IMovieReadRepository,MovieReadRepository>();
+builder.Services.AddSingleton<IMovieWriteRepository,MovieWriteRepository>();
+
+//Services
+builder.Services.AddTransient<IMovieDeleteService, MovieDeleteService>();
+builder.Services.AddTransient<IMovieGetService, MovieGetService>();
+builder.Services.AddTransient<IMovieCreateService, MovieCreateService>();
+builder.Services.AddTransient<IMovieReplaceService, MovieReplaecService>();
+builder.Services.AddTransient<IMovieUpdateService, MovieUpdateService>();
+
+NotificationMessagesConfiguation.SetupMessagesConfiguration(new[] 
+{ 
+    PersonalNotification.myNotifications, 
+    PersonalNotification.myNotifications2,
+    MovieCreateNotifications.Notifications
+});
 
 var app = builder.Build();
 

@@ -27,7 +27,3 @@ LICENSE
 **/NotifyApi/obj/**
 **/Notify/obj/**
 **/NotifyConsole/obj/**
-**/obj/**
-**/bin/**
-**/*.dll
-**/*.pdb

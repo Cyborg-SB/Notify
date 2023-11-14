@@ -5,7 +5,7 @@ using Notify.Services.Interfaces;
 using Notify.Validators;
 using System.Net;
 
-namespace NotifyConsole
+namespace NotifyApi
 {
     public static class PersonalNotification
     {

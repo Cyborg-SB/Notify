@@ -1,4 +1,6 @@
-﻿namespace Notify.Dtos
+﻿using Notify.Entities;
+
+namespace Notify.Dtos
 {
     public class NotifiableResultReponse 
     {
