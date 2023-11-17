@@ -26,7 +26,7 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: Update nuget.exe
-        run : nuget.exe update -self
+        run : nuget update -self
 
       - name: Restore packages
         run: dotnet restore ${{env.PROJECT_PATH}}
