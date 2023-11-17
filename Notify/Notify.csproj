@@ -19,6 +19,7 @@
 		Notify.NotificationPattern.Library
 	</PackageId>
     <Authors>Cyborg-SB</Authors>
+    <Version>1.0.1</Version>
 </PropertyGroup>
 
 </Project>
