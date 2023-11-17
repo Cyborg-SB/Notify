@@ -24,3 +24,16 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+      
+  open_pr:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: open-pull-request
+          uses: repo-sync/pull-request@v2
+          with:
+            destination_branch: "stagging"
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            pr_label: "PR Automático"
+            pr_title: "PR automático de feature/** para stagging"
