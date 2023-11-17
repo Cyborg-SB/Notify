@@ -6,6 +6,9 @@ on:
     branches:
       - 'feature/**'
 
+env:
+    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   build:
 
