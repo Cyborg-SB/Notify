@@ -2,7 +2,6 @@
 using Notify.Validators;
 using NotifyApi.Features.Movies;
 using NotifyApi.Features.Movies.Repositories;
-using Notify;
 
 namespace NotifyApi.Features.MoviesFeatures
 {
@@ -25,7 +24,7 @@ namespace NotifyApi.Features.MoviesFeatures
             {
                 var movieToReplace = await movieGetService.GetMovieAsync(request.Id);
 
-                new ContextContract(notifiable)
+                new Contract(notifiable)
                     .ShouldBeTrue(movieToReplace is not null, default)
                     .ShouldBeTrue(DateTime.MinValue.Date != request.ReleaseDate, default)
                     .ShouldBeTrue(DateTime.Now.Date >= request.ReleaseDate.Date, default);

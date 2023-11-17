@@ -1,6 +1,5 @@
 ﻿using Notify.Services.Interfaces;
 using Notify.Validators;
-using NotifyApi.Features.Movies;
 using NotifyApi.Features.Movies.Repositories;
 
 namespace NotifyApi.Features.MoviesFeatures
@@ -23,11 +22,11 @@ namespace NotifyApi.Features.MoviesFeatures
             try
             {
                 var isGuid = Guid.TryParse(id, out Guid guid);
-                var moveToBeDelete = await movieGetService.GetMovieAsync(guid);
+                var movieToDelete = await movieGetService.GetMovieAsync(guid);
 
-                new ContextContract(notifiable)
+                new Contract(notifiable)
                     .ShouldBeTrue(isGuid, 30000)
-                    .ShouldBeTrue(moveToBeDelete is not null, 10000);
+                    .ShouldBeTrue(movieToDelete is not null, 10000);
 
                 if (notifiable.Invalid)
                     return false;

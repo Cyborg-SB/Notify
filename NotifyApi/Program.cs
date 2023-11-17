@@ -1,12 +1,9 @@
 using Notify.Filters;
 using Notify.Services;
 using Notify.Services.Interfaces;
-using NotifyApi;
-using NotifyApi.Features.Movies;
 using NotifyApi.Features.Movies.Constants;
 using NotifyApi.Features.Movies.Repositories;
 using NotifyApi.Features.MoviesFeatures;
-using NotifyApi.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,13 +11,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers(o =>
 {
-    //o.Filters.Add<NotifiableFilter>();
+    o.Filters.Add<NotifiableFilter>();
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSwaggerGen();
+
 builder.Services.AddScoped<INotifiableContext, NotifiableContext>();
+NotificationMessagesConfiguation.SetupMessagesConfiguration(MovieCreateNotifications.Notifications);
 
 //Repositories
 builder.Services.AddSingleton<IMovieReadRepository,MovieReadRepository>();
@@ -33,12 +31,7 @@ builder.Services.AddTransient<IMovieCreateService, MovieCreateService>();
 builder.Services.AddTransient<IMovieReplaceService, MovieReplaecService>();
 builder.Services.AddTransient<IMovieUpdateService, MovieUpdateService>();
 
-NotificationMessagesConfiguation.SetupMessagesConfiguration(new[] 
-{ 
-    PersonalNotification.myNotifications, 
-    PersonalNotification.myNotifications2,
-    MovieCreateNotifications.Notifications
-});
+
 
 var app = builder.Build();
 

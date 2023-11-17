@@ -13,7 +13,6 @@ namespace NotifyApi.Features.Movies.Repositories
         {
             try
             {
-
                 await MemoryDataBase.DefaultInMemoryDelay;
 
                 return MemoryDataBase.InsertMovie(movieEntity)!;

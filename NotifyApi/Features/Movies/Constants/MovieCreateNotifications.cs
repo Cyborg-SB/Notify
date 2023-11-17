@@ -9,7 +9,7 @@ namespace NotifyApi.Features.Movies.Constants
         public static readonly Dictionary<long, NotificationParameters> Notifications = new()
         {
             {
-                10000,
+                NotificationCode.MovieNotFound,
                 new NotificationParameters(
                     "Filme não encontrado na base de dados",
                     nameof(MovieCreateRequest.Id),
@@ -17,7 +17,7 @@ namespace NotifyApi.Features.Movies.Constants
                     NotificationSeverity.Warning)
             },
             {
-                20000,
+                NotificationCode.CantRemoveUnregisteredMovie,
                 new NotificationParameters(
                     "Não é possível remover um filme não cadastrado",
                     nameof(MovieCreateRequest.Id),
@@ -25,7 +25,7 @@ namespace NotifyApi.Features.Movies.Constants
                     NotificationSeverity.Warning)
             },
             {
-                30000,
+                NotificationCode.InvalidMovieIdentifier,
                 new NotificationParameters(
                     "Identificador informado não é válido",
                     nameof(MovieCreateRequest.Id),

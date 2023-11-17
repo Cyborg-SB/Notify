@@ -21,12 +21,13 @@ namespace NotifyApi.Features.MoviesFeatures
         {
             try
             {
-                var movieToUpdate = await movieGetService.GetMovieAsync(request.Id);
+                var movieToCreate = await movieGetService.GetMovieAsync(request.Id);
 
-                new ContextContract(notifiable)
-                    .ShouldNotBeTrue(movieToUpdate is not null, default)
+                new Contract(notifiable)
+                    .ShouldNotBeTrue(movieToCreate is not null, default)
                     .ShouldBeTrue(DateTime.MinValue.Date != request.ReleaseDate.Date, default)
-                    .ShouldBeTrue(DateTime.Now.Date <= request.ReleaseDate.Date, default);
+                    .ShouldBeTrue(DateTime.Now.Date <= request.ReleaseDate.Date, default)
+                    .ShouldNotBeTrue(string.IsNullOrWhiteSpace(request.Description),default);
 
                 if (notifiable.Invalid)
                     return default!;

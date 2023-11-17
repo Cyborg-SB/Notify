@@ -1,4 +1,5 @@
 ﻿using Notify.Entities;
+using Notify.Services.Interfaces;
 
 namespace Notify.Validators
 {
@@ -6,15 +7,20 @@ namespace Notify.Validators
     {
         public Contract(Notifiable entity)
         {
-            notifiableEntity = entity;
+            _notifiable = entity;
+        }
+
+        public Contract(INotifiableContext notifiableContext)
+        {
+            _notifiable = (notifiableContext as Notifiable)!;
         }
 
 
-        private readonly Notifiable notifiableEntity;
+        private readonly Notifiable _notifiable;
         public Contract ShouldBeTrue(bool value, long key)
         {
             if (!value)
-                notifiableEntity.AddNotification(new NotificationItem(string.Empty, key));
+                _notifiable.AddNotification(new NotificationItem(string.Empty, key));
 
             return this;
         }

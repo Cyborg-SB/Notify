@@ -5,11 +5,11 @@ namespace Notify.Services
 {
     public class NotificationMessagesConfiguation
     {
-        private NotificationMessagesConfiguation(Dictionary<long, NotificationParameters> messagesConfiguration)
+        private NotificationMessagesConfiguation(IDictionary<long, NotificationParameters> messagesConfiguration)
         {
             MessagesConfiguation = messagesConfiguration;
         }
-        public static void SetupMessagesConfiguration(Dictionary<long, NotificationParameters> messagesConfiguration)
+        public static void SetupMessagesConfiguration(IDictionary<long, NotificationParameters> messagesConfiguration)
         {
             if (Instance is not null)
                 throw new Exception($"{nameof(NotificationMessagesConfiguation)} já inicializado");
@@ -17,7 +17,7 @@ namespace Notify.Services
             Instance = new NotificationMessagesConfiguation(messagesConfiguration);
         }
 
-        public static void SetupMessagesConfiguration(Dictionary<long, NotificationParameters>[] messagesConfigurations)
+        public static void SetupMessagesConfiguration(IDictionary<long, NotificationParameters>[] messagesConfigurations)
         {
             if (Instance is not null)
                 throw new Exception($"{nameof(NotificationMessagesConfiguation)} já inicializado");
@@ -31,6 +31,6 @@ namespace Notify.Services
 
         internal static NotificationMessagesConfiguation? Instance;
 
-        public Dictionary<long, NotificationParameters> MessagesConfiguation { get; private set; }
+        public IDictionary<long, NotificationParameters> MessagesConfiguation { get; private set; }
     }
 }
