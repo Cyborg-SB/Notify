@@ -6,35 +6,36 @@
 
   
 
-Welcome to Notify, your friendly and easy alternative for implementing and using the Notification Pattern in WebApi projects in C# with the NET6.0 framework. If you're looking for a simple and effective way to handle validation messages, errors and notifications, Notify is an option.
+Bem-vindo ao Notify, sua alternativa amigável e descomplicada para implementação e  uso do Notification Pattern em projetos WebApi em C# com o framework NET6.0. Se está a procura de de uma maneira simples e eficaz de lidar com mensagens de validação, erros e notificações, o Notify é uma opção.
 
 #
 
 ### Features
 
-- [x] Domain notifications
-- [x] Global Scope Filter for response handling
+- [x] Notificações de domínio
+- [x] Filtro de Escopo global para tratamento de resposta
 
 
 
-### Prerequisites
+### Pré-requisitos
 
-To use the library, you must have the Dot [Net6.0](https://dotnet.microsoft.com/en-US/download/dotnet/6.0) SDK version installed in your environment.
+Par utilizar a biblioteca é necessário que tenha instalando em seu ambiente a versão Dot [Net6.0](https://dotnet.microsoft.com/pt-br/download/dotnet/6.0) SDK.
+
 
 ## Utiliação:
 
-Service Registration (Program.cs)
+Registro do Serviço (Program.cs)
 
 ```cs
 builder.Services.AddScoped<INotifiableContext, NotifiableContext>();
 NotificationMessagesConfiguation.SetupMessagesConfiguration(MovieCreateNotifications.Notifications);
  
 ```
-### Suggestion
+### Sugestão
 
-To register the set of notifications, you can use a class with static properties to store your notifications and their respective identification codes, for more user-friendly reading.
+Para registro do conjunto de notificações, pode-se utilizar uma clase com propriedades pripedades estáticas para armazenar sua notificações e seus respectivoo códigos de identificação, para uma leitura mais amigável.
 
-Notification Codes
+Código identificações
 ```cs
     public static class NotificationCode
     {
@@ -44,7 +45,7 @@ Notification Codes
     }
 ```
 
-Notifications
+Notificações
 ```cs
 public static class MovieCreateNotifications
     {
@@ -79,15 +80,15 @@ public static class MovieCreateNotifications
 ```
 
 #
-### Filter application in Controllers
-Gloabal Scope
+### Aplicação de filtro em Controllers  
+Escopo Global
 ```cs
 builder.Services.AddControllers(o =>
 {
     o.Filters.Add<NotifiableFilter>();
 });
 ```
-By Controller
+Por Controller
 ```cs
     [NotifiableFilter]
     [Route("movies")]
@@ -100,7 +101,7 @@ By Controller
 
 ### Lançando notificações 
 
-Entity Validation (Inheriting from EntityBase)
+Validando entidades (Estendendo EntityBase)
 ```cs
   public class MovieEntity :  EntityBase, IMovieContract
     {
@@ -124,7 +125,7 @@ Entity Validation (Inheriting from EntityBase)
 ```
 
 
-Validatin by context (INotifiable)
+Validando diretamente pelo contexto (INotifiable)
 ```cs
 public class MovieUpdateService : IMovieUpdateService
     {
@@ -161,7 +162,7 @@ public class MovieUpdateService : IMovieUpdateService
 
 ```
 
-Validating by contract 
+Validando por meio de um contrato 
 ```cs
         public class MovieCreateService : IMovieCreateService
     {
@@ -190,11 +191,11 @@ Validating by contract
 
 ```
 #
-### Usage example
+### Exemplo de Utilização
 
-This project has a micro api with an in-memory database exemplifying the use of the library.
+Este projeto conta com uma micro api com banco de dados em memória exemplificando a utilização da biblioteca.
 
-[Insomnia Example Api Collection](/NotifyApi/Insomnia/NotifyApiExample.json)
+[Collection Api Exemplo Insomnia](/NotifyApi/Insomnia/NotifyApiExample.json)
 
 
 ## MIT License
