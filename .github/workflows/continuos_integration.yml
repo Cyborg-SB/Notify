@@ -7,7 +7,7 @@ on:
       - 'feature/**'
 
 env:
-    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    GH_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
 
 jobs:
   build:
