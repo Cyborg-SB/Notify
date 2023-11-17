@@ -9,7 +9,7 @@ on:
 env: 
   PROJECT_PATH: Notify/Notify.csproj
   PACKAGE_OUTPUT_PATH: ${{github.workspace}}/output
-  NUGET_SOURCE_URL: https://api.nuget.org/v3/index.json
+  NUGET_SOURCE_URL: https://www.nuget.org/api/v2/
 
 
 jobs:
