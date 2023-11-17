@@ -40,5 +40,5 @@ jobs:
        # run: dotnet pack ${{env.PROJECT_PATH}} --no-restore --no-build --configuration Release --include-symbols -p:PacageVersion=${{steps.version.outputs.version-without-v}} --output ${{PACAGE_OUTPUT_PATH}}
 
       - name: Push package to nuget
-        run: dotnet nuget push ${{env.PACKAGE_OUTPUT_PATH}}/Notify*.nupkg -k ${{secrets.NUGET_KEY}} -s ${{env.NUGET_SOURCE_URL}} --skup-duplicate        
+        run: dotnet nuget push ${{env.PACKAGE_OUTPUT_PATH}}/Notify*.nupkg -k ${{secrets.NUGET_KEY}} -s ${{env.NUGET_SOURCE_URL}} --skip-duplicate --no-service-endpoint --no-symbols       
 
