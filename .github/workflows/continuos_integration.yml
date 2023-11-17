@@ -1,13 +1,13 @@
 name: Continuos Integration
 
 on:
-  push:
   pull_request:
     branches:
       - 'feature/**'
 
 env:
     GH_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
+
 
 jobs:
   build:
@@ -26,6 +26,7 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+
       
   open_pr:
       needs: build
@@ -36,3 +37,4 @@ jobs:
         - name: open-pull-request
           run: |
             gh pr create --title "PR Automático de ${GITHUB_REF##*/} para Stagging " --body "Description" -B "stagging" 
+
