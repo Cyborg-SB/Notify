@@ -13,5 +13,12 @@
   <ItemGroup>
     <Folder Include="Dtos\Models\" />
   </ItemGroup>
+	
+<PropertyGroup>
+	<PackageId>
+		Notify.NotificationPattern.Library
+	</PackageId>
+    <Authors>Cyborg-SB</Authors>
+</PropertyGroup>
 
 </Project>
