@@ -6,7 +6,7 @@
 
 # Notifiy
 
-
+  
 
 Bem-vindo ao Notify, sua alternativa amigável e descomplicada para implementação e  uso do Notification Pattern em projetos WebApi em C# com o framework NET6.0. Se está a procura de de uma maneira simples e eficaz de lidar com mensagens de validação, erros e notificações, o Notify é uma opção.
 
