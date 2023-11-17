@@ -6,6 +6,8 @@ name: .Unit-Tests
 on:
   push:
   pull_request:
+    branches:
+      - 'feature/**'
 
 jobs:
   build:
@@ -30,11 +32,8 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
         - name: open-pull-request
-          uses: repo-sync/pull-request@v2
-          with:
-            destination_branch: "stagging"
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            pr_label: "PR Automático"
-            pr_title: "PR automático de feature/** para stagging"
+          run: |
+            gh_pr_up() { gh pr create $* || gh pr edit $* }
+            gh_pr_up --title "PR Automático" --body "Description"
