@@ -1,5 +1,4 @@
 
-<div align="center">
 
 ![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/Cyborg-SB/Notify)
 ![GitHub License](https://img.shields.io/badge/license-MIT-blue)
@@ -7,7 +6,7 @@
 
 # Notifiy
 
-</div>
+
 
 Bem-vindo ao Notify, sua alternativa amigável e descomplicada para implementação e  uso do Notification Pattern em projetos WebApi em C# com o framework NET6.0. Se está a procura de de uma maneira simples e eficaz de lidar com mensagens de validação, erros e notificações, o Notify é uma opção.
 
@@ -150,7 +149,7 @@ Validando por meio de um contrato
 
 Este projeto conta com uma micro api com banco de dados em memória exemplificando a utilização da biblioteca.
 
-[Collection Api Exemplo Insominia](/NotifyApi/Insomnia/NotifyApiExample.json)
+[Collection Api Exemplo Insomnia](/NotifyApi/Insomnia/NotifyApiExample.json)
 
 
 ## MIT License
