@@ -1,4 +1,4 @@
-name: Continuos Integration
+name: Continuos Integration Stagging
 
 on:
   pull_request:
