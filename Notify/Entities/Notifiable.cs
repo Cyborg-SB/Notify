@@ -1,8 +1,10 @@
 ﻿using Notify.Services;
 using Notify.Services.Interfaces;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Notify.Entities
 {
+    [ExcludeFromCodeCoverage]
     public abstract class Notifiable
     {
         private readonly List<NotificationItem> notifications = new();

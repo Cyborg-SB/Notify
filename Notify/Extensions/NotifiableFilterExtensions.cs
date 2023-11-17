@@ -7,13 +7,15 @@ using Notify.Entities;
 using Notify.Enums;
 using Notify.Services;
 using Notify.Services.Interfaces;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 
 namespace Notify.Extensions
 {
+    [ExcludeFromCodeCoverage]
     internal class NotifiableFilterExtensions
     {
-
+        [ExcludeFromCodeCoverage]
         internal static async Task NotifiableFilterProcessAsync(ResultExecutingContext context, ResultExecutionDelegate next)
         {
             var notifiable = GetNotifiableContext(context);
@@ -29,7 +31,7 @@ namespace Notify.Extensions
             }       
             await next.Invoke();
         }
-
+  
         private static INotifiableContext GetNotifiableContext(FilterContext filterContext) =>
             filterContext.HttpContext.RequestServices.GetRequiredService<INotifiableContext>();
 

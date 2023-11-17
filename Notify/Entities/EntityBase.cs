@@ -1,5 +1,8 @@
-﻿namespace Notify.Entities
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Notify.Entities
 {
+    [ExcludeFromCodeCoverage]
     public abstract class EntityBase : Notifiable
     {
         protected new void AddNotification(NotificationItem notification) =>
