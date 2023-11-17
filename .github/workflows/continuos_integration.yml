@@ -8,7 +8,7 @@ on:
 
 env:
     GH_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
-    CURRENT_BRANCH: ${GITHUB_REF##*/}
+    CURRENT_BRANCH: ${{GITHUB_REF##*/}}
 
 jobs:
   build:
