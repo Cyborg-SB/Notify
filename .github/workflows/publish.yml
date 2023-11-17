@@ -9,7 +9,7 @@ on:
 env: 
   PROJECT_PATH: Notify/Notify.csproj
   PACKAGE_OUTPUT_PATH: ${{github.workspace}}/output
-  NUGET_SOURCE_URL: https://www.nuget.org/api/v2/
+  NUGET_SOURCE_URL: https://api.nuget.org/v3/index.json
 
 
 jobs:
@@ -24,6 +24,7 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
+          run : nuget.exe update -self
 
       - name: Restore packages
         run: dotnet restore ${{env.PROJECT_PATH}}
