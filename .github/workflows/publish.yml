@@ -1,6 +1,8 @@
 name: publish to nuget
 on:
   push:
+    tags:
+      - 'v*'
     branches:
       - main # Default release branch, may also be named 'master' or 'develop'
       
@@ -28,9 +30,13 @@ jobs:
 
       - name: Build
         run: dotnet build ${{env.PROJECT_PATH}} --no-restore --configuration Release
+
+      - name: Get PackageVersion
+        id: version
+        uses: battila7/get-version-action@v2
         
       - name: Pack
-        run: dotnet pack ${{env.PROJECT_PATH}} --no-restore --no-build --configuration Release --include-symbols --output ${{PACAGE_OUTPUT_PATH}}
+        run: dotnet pack ${{env.PROJECT_PATH}} --no-restore --no-build --configuration Release --include-symbols -p:PacageVersion=${{steps.version.outputs.version-without-v}} --output ${{PACAGE_OUTPUT_PATH}}
 
       - name: Push package to nuget
         run: dotnet nuget push ${{PACAGE_OUTPUT_PATH}}\Notify*.nupkg -k ${{secrets.NUGET_KEY}} -s ${{env.NUGET_SOURCE_URL}}
