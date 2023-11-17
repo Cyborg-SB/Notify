@@ -42,3 +42,4 @@ jobs:
         github_token: ${{secrets.GITHUB_TOKEN}}
         pr_label: 'Automated PR from feature/* to stagging'
         pr_title: 'Automated PR from feature/* to stagging'
+    needs: build
