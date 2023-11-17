@@ -1,0 +1,19 @@
+name: Open Pr Main
+
+on:
+  push:
+    branches:
+      - 'stagging'
+
+env:
+    GH_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
+
+jobs:
+  open_pr:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Promote Main
+          uses: actions/checkout@v3
+        - name: open-pull-request
+          run: |
+            gh pr create --title "PR Automático de ${GITHUB_REF##*/} para Main " --body "Description" -B "main" 
