@@ -33,4 +33,4 @@ jobs:
         - name: open-pull-request
           run: |
             gh_pr_up() { gh pr create $* || gh pr edit $* }
-            gh_pr_up --title "PR Automático" --body "Description"
+            gh_pr_up --title "PR Automático" --body "Description" -B "stagging" 
