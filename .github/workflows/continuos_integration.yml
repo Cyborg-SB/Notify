@@ -27,3 +27,18 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+
+  open_pr_stagging:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: repo-sync/pull-request@v2
+    - name: PR_stagging
+      with:
+        detination_branch: 'stagging'
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        pr_label: 'Automated PR from feature/* to stagging'
+        pr_title: 'Automated PR from feature/* to stagging'
