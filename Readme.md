@@ -1,10 +1,13 @@
+
 ![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/Cyborg-SB/Notify)
 ![GitHub License](https://img.shields.io/badge/license-MIT-blue)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Cyborg-SB/Notify)
 
 # Notifiy
 
-  
+Available in: 
+ [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/Cyborg-SB/Notify/blob/main/Readme-pt_BR.md)
+ 
 
 Welcome to Notify, your friendly and easy alternative for implementing and using the Notification Pattern in WebApi projects in C# with the NET6.0 framework. If you're looking for a simple and effective way to handle validation messages, errors and notifications, Notify is an option.
 
