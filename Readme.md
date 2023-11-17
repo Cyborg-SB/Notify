@@ -21,7 +21,7 @@ Welcome to Notify, your friendly and easy alternative for implementing and using
 
 To use the library, you must have the Dot [Net6.0](https://dotnet.microsoft.com/en-US/download/dotnet/6.0) SDK version installed in your environment.
 
-## Utiliação:
+## Usage:
 
 Service Registration (Program.cs)
 
@@ -98,7 +98,7 @@ By Controller
 
 ```
 
-### Lançando notificações 
+### Raising Notifications
 
 Entity Validation (Inheriting from EntityBase)
 ```cs
@@ -124,7 +124,7 @@ Entity Validation (Inheriting from EntityBase)
 ```
 
 
-Validatin by context (INotifiable)
+Validating by context (INotifiable)
 ```cs
 public class MovieUpdateService : IMovieUpdateService
     {
