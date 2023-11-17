@@ -36,10 +36,10 @@ jobs:
      #   uses: battila7/get-version-action@v2
         
       - name: Pack
-        run: dotnet pack ${{env.PROJECT_PATH}} --no-restore --no-build --configuration Release --include-symbols --output ${{PACKAGE_OUTPUT_PATH}}
+        run: dotnet pack ${{env.PROJECT_PATH}} --no-restore --no-build --configuration Release --include-symbols --output ${{env.PACKAGE_OUTPUT_PATH}}
        # run: dotnet pack ${{env.PROJECT_PATH}} --no-restore --no-build --configuration Release --include-symbols -p:PacageVersion=${{steps.version.outputs.version-without-v}} --output ${{PACAGE_OUTPUT_PATH}}
 
       - name: Push package to nuget
-        run: dotnet nuget push ${{PACKAGE_OUTPUT_PATH}}/Notify*.nupkg -k ${{secrets.NUGET_KEY}} -s ${{env.NUGET_SOURCE_URL}}
+        run: dotnet nuget push ${{env.PACKAGE_OUTPUT_PATH}}/Notify*.nupkg -k ${{secrets.NUGET_KEY}} -s ${{env.NUGET_SOURCE_URL}}
         
 
