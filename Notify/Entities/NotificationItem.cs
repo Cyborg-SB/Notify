@@ -1,5 +1,8 @@
-﻿namespace Notify.Entities
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Notify.Entities
 {
+    [ExcludeFromCodeCoverage]
     public class NotificationItem
     {
         internal NotificationItem(string message, long key = 0, string propertyValue = "")

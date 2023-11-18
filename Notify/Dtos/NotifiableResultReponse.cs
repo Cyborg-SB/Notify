@@ -1,7 +1,9 @@
 ﻿using Notify.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Notify.Dtos
 {
+    [ExcludeFromCodeCoverage]
     public class NotifiableResultReponse 
     {
         internal NotifiableResultReponse(int statusCode, string message, IReadOnlyCollection<NotificationMessageResult> notificationItems)

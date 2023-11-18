@@ -1,10 +1,12 @@
 ﻿
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Text.Json.Serialization;
 using Notify.Enums;
 
 namespace Notify.Entities
 {
+    [ExcludeFromCodeCoverage]
     public class NotificationMessageResult
     {
         internal NotificationMessageResult(string message, long key, string propertyName, string propertyValue, NotificationSeverity severity, HttpStatusCode statusCode)

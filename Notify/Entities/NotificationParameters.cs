@@ -1,8 +1,10 @@
-﻿using System.Net;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Net;
 using Notify.Enums;
 
 namespace Notify.Entities
 {
+    [ExcludeFromCodeCoverage]
     public class NotificationParameters
     {
         public NotificationParameters(string message, string propertyName, HttpStatusCode statusCode, NotificationSeverity notificationSeverity)

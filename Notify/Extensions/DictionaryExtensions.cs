@@ -1,5 +1,8 @@
-﻿namespace Notify.Extensions
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Notify.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class DictionaryExtensions
     {
         public static void AddRangeOverride<TKey, TValue>(this IDictionary<TKey, TValue> dictionaryToBeIncremented, IDictionary<TKey, TValue> dictionaryToBeAdded)

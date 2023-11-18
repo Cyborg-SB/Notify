@@ -1,6 +1,6 @@
 ﻿namespace Notify
 {
-    public static partial class Compator
+    public static partial class Comparator
     {
 
         public static class Double

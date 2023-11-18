@@ -1,3 +1,4 @@
+using Notify.Extensions;
 using Notify.Filters;
 using Notify.Services;
 using Notify.Services.Interfaces;
@@ -11,14 +12,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers(o =>
 {
-    o.Filters.Add<NotifiableFilter>();
+    //o.Filters.Add<NotifiableFilter>();
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<INotifiableContext, NotifiableContext>();
-NotificationMessagesConfiguation.SetupMessagesConfiguration(MovieCreateNotifications.Notifications);
+builder.Services.RegisterNotificationMessagesService(MovieCreateNotifications.Notifications);
 
 //Repositories
 builder.Services.AddSingleton<IMovieReadRepository,MovieReadRepository>();
