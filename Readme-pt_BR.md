@@ -28,12 +28,12 @@ Registro do Serviço (Program.cs)
 
 ```cs
 builder.Services.AddScoped<INotifiableContext, NotifiableContext>();
-NotificationMessagesConfiguation.SetupMessagesConfiguration(MovieCreateNotifications.Notifications);
+builder.Services.RegisterNotificationMessagesService(MovieCreateNotifications.Notifications);
  
 ```
 ### Sugestão
 
-Para registro do conjunto de notificações, pode-se utilizar uma clase com propriedades pripedades estáticas para armazenar sua notificações e seus respectivoo códigos de identificação, para uma leitura mais amigável.
+Para registro do conjunto de notificações no mento da chamada de RegisterNotificationMessagesService, pode-se utilizar uma clase com propriedades pripedades estáticas para armazenar sua notificações e seus respectivoo códigos de identificação, para uma leitura mais amigável.
 
 Código identificações
 ```cs

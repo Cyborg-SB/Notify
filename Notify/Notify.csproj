@@ -12,6 +12,12 @@
 
   <ItemGroup>
     <Folder Include="Dtos\Models\" />
+  </ItemGroup> 
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+		<_Parameter1>Notify.Tests</_Parameter1>
+	</AssemblyAttribute>
   </ItemGroup>
 	
 <PropertyGroup>
@@ -19,8 +25,9 @@
 		Notify.NotificationPattern.Library
 	</PackageId>
     <Authors>Cyborg-SB</Authors>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <Description> Notify is a friendly and easy alternative for implementing and using the Notification Pattern in WebApi projects in C# with the NET6.0 framework. If you're looking for a simple and effective way to handle validation messages, errors and notifications, Notify is an option.</Description>
 	</PropertyGroup>
+
 
 </Project>
