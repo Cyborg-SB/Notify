@@ -29,7 +29,7 @@ namespace Notify.Entities
 
         private static NotificationItem GetNotificationParameters(string message, long key = 0, string propertyValue = "")
         {
-            if (key != 0 && NotificationMessagesConfiguation.Instance!.MessagesConfiguation.TryGetValue(key, out var value))
+            if (key != 0 && NotificationMessagesConfiguation.InternalMessagesConfiguration.TryGetValue(key, out var value))
             {
                 if (string.IsNullOrWhiteSpace(message))
                     return new NotificationItem(value.Message, key, propertyValue);

@@ -8,16 +8,14 @@ namespace Notify.Tests.Shared
 {
     [ExcludeFromCodeCoverage]
     public static class Common
-    {
-        public static void ShutDownMessagesConfigurationInstance()=>
-            NotificationMessagesConfiguation.Instance = default;           
+    {    
 
-        public static readonly Dictionary<long, NotificationParameters> noticationParamertersSetup = new()
+        public static readonly Dictionary<long, NotificationParameters> notificationParamertersSetup = new()
             {
                 { 1,
                     new NotificationParameters(
                         nameof(NotificationMessagesConfigurationTests),
-                        nameof(noticationParamertersSetup),
+                        nameof(notificationParamertersSetup),
                         HttpStatusCode.UnprocessableEntity,
                         NotificationSeverity.Warning) }
             };
@@ -27,7 +25,7 @@ namespace Notify.Tests.Shared
                 { 2,
                     new NotificationParameters(
                         nameof(NotificationMessagesConfigurationTests),
-                        nameof(noticationParamertersSetup),
+                        nameof(notificationParamertersSetup),
                         HttpStatusCode.UnprocessableEntity,
                         NotificationSeverity.Warning) }
             };

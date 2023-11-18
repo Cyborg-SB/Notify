@@ -1,29 +1,35 @@
 ﻿using Notify.Entities;
 using Notify.Excetpions;
 using Notify.Extensions;
+using Notify.Services.Interfaces;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Notify.Services
 {
-    public class NotificationMessagesConfiguation
-    {
-        private NotificationMessagesConfiguation(IDictionary<long, NotificationParameters> messagesConfiguration)
-        {
-            MessagesConfiguation = messagesConfiguration;
-        }
-        public static void SetupMessagesConfiguration(IDictionary<long, NotificationParameters> messagesConfiguration)
-        {
-            NotificationMessagesConfiguationInstance(Instance!);
 
+    public class NotificationMessagesConfiguation : INotificationMessagesConfiguation
+    {
+        internal NotificationMessagesConfiguation(IDictionary<long, NotificationParameters> messagesConfiguration)
+        {
+            MessagesConfiguation = SetupMessagesConfiguration(messagesConfiguration);
+            InternalMessagesConfiguration = MessagesConfiguation;
+
+        }
+
+        internal NotificationMessagesConfiguation(IDictionary<long, NotificationParameters>[] messagesConfiguration)
+        {
+            MessagesConfiguation = SetupMessagesConfiguration(messagesConfiguration);
+            InternalMessagesConfiguration = MessagesConfiguation;
+        }
+        public static IDictionary<long, NotificationParameters> SetupMessagesConfiguration(IDictionary<long, NotificationParameters> messagesConfiguration)
+        {
             ValidateNotificationDicionary(messagesConfiguration);
 
-            Instance = new NotificationMessagesConfiguation(messagesConfiguration);
+            return messagesConfiguration;
         }
 
-        public static void SetupMessagesConfiguration(IDictionary<long, NotificationParameters>[] messagesConfigurations)
+        internal static IDictionary<long, NotificationParameters> SetupMessagesConfiguration(IDictionary<long, NotificationParameters>[] messagesConfigurations)
         {
-            NotificationMessagesConfiguationInstance(Instance!);
-
             Dictionary<long, NotificationParameters> consolidatedNotificationParameters = new();
 
             messagesConfigurations.ForEach(currentDicionary => 
@@ -33,14 +39,9 @@ namespace Notify.Services
                 consolidatedNotificationParameters.AddRange(currentDicionary); 
             });
 
-            Instance = new NotificationMessagesConfiguation(consolidatedNotificationParameters);
+            return consolidatedNotificationParameters;
         }
-        [ExcludeFromCodeCoverage]
-        internal static void NotificationMessagesConfiguationInstance(NotificationMessagesConfiguation notificationMessagesConfiguation)
-        {
-            if (notificationMessagesConfiguation is not null)
-                throw new MessagesConfigurationInstanceAlreadyInitializedException();
-        }
+     
         [ExcludeFromCodeCoverage]
         internal static void ValidateNotificationDicionary(IDictionary<long, NotificationParameters> notificationParameters)
         {
@@ -48,8 +49,9 @@ namespace Notify.Services
                 throw new InvalidNotificationsDicionaryException();
         }
 
-        internal static NotificationMessagesConfiguation? Instance;
+        internal static IDictionary<long, NotificationParameters> InternalMessagesConfiguration { get; private set; } = default!;
 
-        public IDictionary<long, NotificationParameters> MessagesConfiguation { get; private set; }
+        internal IDictionary<long, NotificationParameters> MessagesConfiguation { get; private set; }
+
     }
 }

@@ -7,6 +7,7 @@ using Notify.Entities;
 using Notify.Enums;
 using Notify.Services;
 using Notify.Services.Interfaces;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 
@@ -20,18 +21,21 @@ namespace Notify.Extensions
         {
             var notifiable = GetNotifiableContext(context);
 
-            if (notifiable.Invalid)
+            if (notifiable.Valid)
             {
-                var response = GetNotifiableResultReponseMessages(notifiable.Notifications);
-
-                context.HttpContext.Response.StatusCode = response.StatusCode;
-                context.HttpContext.Response.ContentType = "application/json";
-                await context.HttpContext.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(new ObjectResult(response)?.Value));
+                await next.Invoke();
                 return;
             }       
-            await next.Invoke();
+
+            var response = GetNotifiableResultReponseMessages(notifiable.Notifications);
+
+            context.HttpContext.Response.StatusCode = response.StatusCode;
+            context.HttpContext.Response.ContentType = "application/json";
+            await context.HttpContext.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(new ObjectResult(response)?.Value));
+            
         }
-  
+
+        [ExcludeFromCodeCoverage]
         private static INotifiableContext GetNotifiableContext(FilterContext filterContext) =>
             filterContext.HttpContext.RequestServices.GetRequiredService<INotifiableContext>();
 
@@ -40,14 +44,12 @@ namespace Notify.Extensions
         {
             var lstNotificationMessgeResult = new List<NotificationMessageResult>(notificationItems.Count);
 
-            var messageConfig = NotificationMessagesConfiguation.Instance!.MessagesConfiguation;
-
             var enumerator = notificationItems.GetEnumerator();
 
             while (enumerator.MoveNext())
             {
                 var current = enumerator.Current;
-                messageConfig.TryGetValue(current.Key, out NotificationParameters? value);
+                NotificationMessagesConfiguation.InternalMessagesConfiguration.TryGetValue(current.Key, out NotificationParameters? value);
                 lstNotificationMessgeResult.Add(
                     new NotificationMessageResult(
                         current.Message,
@@ -63,6 +65,7 @@ namespace Notify.Extensions
             var resp = new NotifiableResultReponse((int)maxSeverityElement!.StatusCode,
                 Enum.GetName(typeof(HttpStatusCode), maxSeverityElement!.StatusCode)!,
                 lstNotificationMessgeResult);
+
             return resp;
         }
     }

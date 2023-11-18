@@ -30,12 +30,12 @@ Service Registration (Program.cs)
 
 ```cs
 builder.Services.AddScoped<INotifiableContext, NotifiableContext>();
-NotificationMessagesConfiguation.SetupMessagesConfiguration(MovieCreateNotifications.Notifications);
+builder.Services.RegisterNotificationMessagesService(MovieCreateNotifications.Notifications);
  
 ```
 ### Suggestion
 
-To register the set of notifications, you can use a class with static properties to store your notifications and their respective identification codes, for more user-friendly reading.
+To register the set of notifications when calling the method RegisterNotificationMessagesService, you can use a class with static properties to store your notifications and their respective identification codes, for more user-friendly reading.
 
 Notification Codes
 ```cs
