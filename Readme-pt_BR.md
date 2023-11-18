@@ -190,6 +190,97 @@ Validando por meio de um contrato
         ...   
 
 ```
+
+
+
+Validando entidades 
+```cs
+    internal class TestEntity : EntityBase
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+
+        public TestEntity(string name, string adress)
+        {
+            Id = Guid.NewGuid();
+            Name = name;
+            Address = adress;
+
+            Validate();
+        }
+
+
+        public override void Validate()
+        {
+            var contract = new Contract(this);
+
+            contract.ShouldBeTrue(Comparator.String.IsNotNull(Name), NotificationCodes.NameCannotBeNull);
+            contract.ShouldBeTrue(Comparator.String.HasLengthGreaterOrEqualThan(Name,3), NotificationCodes.NameCannotBeNull);
+            contract.ShouldBeTrue(Comparator.String.IsNotNull(Address), NotificationCodes.AdressCannotBenull);
+            contract.ShouldBeTrue(Comparator.String.HasLengthGreaterOrEqualThan(Address,15), NotificationCodes.AddressLengthShouldBeHigherOrEqualThan);
+
+            //Para incluir uma mensagem que não foi previamente registrada
+
+            AddNotification("Sua Mensagem aqui", default, Id.ToString());
+
+        }
+        
+    }
+
+    public class TestEntityNotifications
+    {
+        public static readonly Dictionary<long, NotificationParameters> Notifctions = new()
+        {
+            {
+                NotificationCodes.NameCannotBeNull,
+                new NotificationParameters(
+                    "Name must be informed",
+                    nameof(TestEntity.Name),
+                    HttpStatusCode.UnprocessableEntity,
+                    Enums.NotificationSeverity.Warning
+                    )
+            },
+            {
+                NotificationCodes.NameLengthShouldBeHigherOrEqualThan,
+                new NotificationParameters(
+                    "Name length should have length equal o greater than 3",
+                    nameof(TestEntity.Name),
+                    HttpStatusCode.UnprocessableEntity,
+                    Enums.NotificationSeverity.Warning
+                    )
+            },
+            {
+                NotificationCodes.AdressCannotBenull,
+                new NotificationParameters(
+                    "Adress must be informed",
+                    nameof(TestEntity.Address),
+                    HttpStatusCode.UnprocessableEntity,
+                    Enums.NotificationSeverity.Warning
+                    )
+            },
+            {
+                NotificationCodes.AddressLengthShouldBeHigherOrEqualThan,
+                new NotificationParameters(
+                    "Adress length should have length equal o greater than 15",
+                    nameof(TestEntity.Address),
+                    HttpStatusCode.UnprocessableEntity,
+                    Enums.NotificationSeverity.Warning
+                    )
+            },
+        };
+    }
+
+    public class NotificationCodes
+    {
+        public const long NameCannotBeNull = 1;
+        public const long NameLengthShouldBeHigherOrEqualThan = 2;
+        public const long AdressCannotBenull = 3;
+        public const long AddressLengthShouldBeHigherOrEqualThan = 4;
+    }
+
+```
+
 #
 ### Exemplo de Utilização
 
